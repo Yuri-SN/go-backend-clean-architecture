@@ -70,7 +70,7 @@ type mongoSession struct {
 
 func NewClient(connection string) (Client, error) {
 	time.Local = time.UTC
-	c, err := mongo.NewClient(options.Client().ApplyURI(connection))
+	c, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(connection))
 
 	return &mongoClient{cl: c}, err
 }
